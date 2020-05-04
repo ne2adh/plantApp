@@ -3,6 +3,7 @@ import {
 	Animated,
 	Dimensions,
 	Image,
+	StatusBar,
 	FlatList,
 	Modal,
 	StyleSheet,
@@ -215,6 +216,7 @@ class WelcomeScreen extends Component {
 	const { navigation } = this.props;
     return (
     	<Block style={{backgroundColor: 'white'}}>
+			<StatusBar backgroundColor='white' />
             <Block center middle  flex={0.3}>
                 <Text h1 center bold>
                     Your Home.
@@ -227,7 +229,7 @@ class WelcomeScreen extends Component {
                 {this.renderSteps()}
             </Block>
             <Block middle flex={0.5} margin={[0, theme.sizes.padding * 2]}>
-                <Button gradient onPress={()=>navigation.navigate('Login')}>
+                <Button gradient onPress={()=>navigation.navigate('LoginScreen')}>
                     <Text center semibold white>Login</Text>
                 </Button>
                 <Button shadow onPress={()=>navigation.navigate('Signup')}>

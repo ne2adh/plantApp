@@ -42,7 +42,8 @@ export default class Input extends Component {
           <Icon
             color={theme.colors.gray}
             size={theme.sizes.font * 1.35}
-            name={!toggleSecure ? "md-eye" : "md-eye-off"}
+            name={!toggleSecure ? 'eye' : 'eye-slash'}
+            
           />
         )}
       </Button>

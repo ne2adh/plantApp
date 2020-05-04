@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-    View,
     Alert,
-    Text,
+    StyleSheet,
     TextInput,
     TouchableOpacity,
     KeyboardAvoidingView
 } from 'react-native';
 
+import { Button, Block, Text, Input } from "../components";
+import { theme } from '../constants';
 
 import { connect } from 'react-redux';
 import { logIn } from '../redux/actions/loginActions';
@@ -22,7 +23,8 @@ class LoginScreen extends Component {
             email: '',
             password: '',
             hidePassword: true,
-            loader: false
+            loader: false,
+            errors: [],
         }
         this._login = this._login.bind(this);// you should bind this to the method that call the props        
     }
@@ -31,11 +33,7 @@ class LoginScreen extends Component {
     setHidePassword = arg => {
         this.setState({ hidePassword: arg })
     }
-
-    handleEmailChange = email => {
-        this.setState({ email })
-    }
-
+    
     handlePasswordChange = password => {
         this.setState({ password })
     }
@@ -52,34 +50,57 @@ class LoginScreen extends Component {
     }
 
     render() {
-        const { hidePassword, email, password } = this.state;
+        const { hidePassword, email, password, loading, errors } = this.state;
+        const { navigation } = this.props;
+        const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
 
         return (
-            <KeyboardAvoidingView behavior="padding">
-                <View>
-                    <TextInput
-                        name='email'
-                        value={email}
-                        placeholder='E-mail'
-                        autoCapitalize='none'
-                        onChangeText={this.handleEmailChange}
-                        iconNameLeft='user'
-                        keyboardType='email-address'
-                    />
-                    <TextInput
-                        name='password'
-                        value={password}
-                        placeholder='Contrasena'
-                        autoCapitalize='none'
-                        onChangeText={this.handlePasswordChange}
-                        keyboardType={null}
-                        secureTextEntry={hidePassword}
-                        onPress={() => this.setHidePassword(!hidePassword)}
-                    />
-                    <TouchableOpacity activeOpacity={0.8}>
-                        <Text onPress={() => this._login()}>Login</Text>
-                    </TouchableOpacity>
-                </View>
+            <KeyboardAvoidingView style={styles.login} behavior="padding">
+                <Block padding={[0, theme.sizes.base * 2]}>
+                    <Text h1 bold>Login</Text>
+                    <Block middle>
+                        <Input
+                            label="Email"
+                            error={hasErrors("email")}
+                            style={[styles.input, hasErrors("email")]}
+                            defaultValue={email}
+                            autoCapitalize='none'
+                            keyboardType='email-address'
+                            onChangeText={text => this.setState({ email: text })}
+                        />
+                        <Input
+                            secure
+                            label="Password"
+                            error={hasErrors("password")}
+                            style={[styles.input, hasErrors("password")]}
+                            defaultValue={this.state.password}
+                            onChangeText={text => this.setState({ password: text })}
+                        />
+                        <TextInput
+                            name='password'
+                            value={password}
+                            placeholder='Contrasena'
+                            autoCapitalize='none'
+                            onChangeText={this.handlePasswordChange}
+                            keyboardType={null}
+                            secureTextEntry={hidePassword}
+                            onPress={() => this.setHidePassword(!hidePassword)}
+                        />
+                        <TouchableOpacity activeOpacity={0.8}>
+                            <Text onPress={() => this._login()}>Login</Text>
+                        </TouchableOpacity>
+                        <Button onPress={() => navigation.navigate("Forgot")}>
+                            <Text
+                                gray
+                                caption
+                                center
+                                style={{ textDecorationLine: "underline" }}
+                            >
+                                Forgot your password?
+                            </Text>
+                        </Button>
+                    </Block>
+                </Block>
             </KeyboardAvoidingView>
         )
     }
@@ -96,3 +117,22 @@ LoginScreen.propTypes = {
 } */
 
 export default connect(null, { logIn })(LoginScreen);
+
+
+const styles = StyleSheet.create({
+    login: {
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: 'white'
+    },
+    input: {
+      borderRadius: 0,
+      borderWidth: 0,
+      borderBottomColor: theme.colors.gray2,
+      borderBottomWidth: StyleSheet.hairlineWidth
+    },
+    hasErrors: {
+      borderBottomColor: theme.colors.accent
+    }
+  });
+  

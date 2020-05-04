@@ -17,8 +17,8 @@ const screenOptions = {
         borderBottomColor: "transparent",
         elevation: 0 // for android
     },
-    headerBackImage: <Image source={require("../assets/icons/back.png")}/>,
-    headerBackTitle: null,
+    headerBackImage: ()=>(<Image source={require("../assets/icons/back.png")}/>),
+    headerBackTitle: false,
     headerLeftContainerStyle: {
         alignItems: "center",
         marginLeft: theme.sizes.base * 2,
@@ -42,7 +42,7 @@ const AppStack = (isLoggedIn) => {
                 ) : (
                     <>
                         <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{ headerShown: false }} />
-                        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+                        <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ title: null }} />
                     </>
                 )
             }
