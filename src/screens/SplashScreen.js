@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import {
-    View, 
     Image,
     StyleSheet,
     StatusBar,
 } from 'react-native';
-import {theme} from '../constants';
+import { Block } from "../components";
 
 export default class SplashScreen extends Component {  
     constructor(props) {
@@ -15,23 +14,14 @@ export default class SplashScreen extends Component {
       }  
     render(){
         return(
-            <View style={styles.container}>
+            <Block center middle>
                <StatusBar translucent backgroundColor='rgba(0,0,0,0.3)' />
-               <Image source={require("../assets/splash.png")} style={styles.image} resizeMode="cover"/>
-            </View>
+               <Image source={require("../assets/splash.png")} style={{height: 300, width: 300}} resizeMode="cover"/>
+            </Block>
         )
     }
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: theme.colors.white,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	image:{
-		height: 300,
-		width: 300,
-	}
+	
 });

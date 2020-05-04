@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
-import { View,   StyleSheet, Text  } from 'react-native';
+import {
+	Animated,
+	Dimensions,
+	Image,
+	FlatList,
+	Modal,
+	StyleSheet,
+	ScrollView
+  } from "react-native";
+import { Button, Block, Text } from "../components";
 import {theme} from '../constants';
-import Button from '../components/Button';
+const { width, height } = Dimensions.get("window");
 
 export default class WelcomeScreen extends Component {
   constructor(props) {
@@ -11,86 +20,48 @@ export default class WelcomeScreen extends Component {
   }
   renderIllustrations(){
     return (
-        <View style={styles.illustration}>
+        <Block >
             <Text>Image</Text>
-        </View>
+        </Block>
     )
   }
   renderSteps(){
     return (
-        <View style={styles.steps}>
+        <Block >
             <Text>* * *</Text>
-        </View>
+        </Block>
     )
   }
   render() {
     return (
-      <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.title}>
+      <Block>
+            <Block>
+                <Text>
                     Your Home.
-                    <Text style={styles.subtitle}>Greener.</Text>
+                    <Text>Greener.</Text>
                 </Text>
-                <Text style={styles.paragraph}>Empty the experience</Text>
-            </View>
-            <View>
+                <Text>Empty the experience</Text>
+            </Block>
+            <Block>
                 {this.renderIllustrations()}
                 {this.renderSteps()}
-            </View>
-            <View style={styles.buttons}>
-                <Button style={styles.gradient} onPress={()=>{}}>
+            </Block>
+            <Block>
+                <Button onPress={()=>{}}>
                     <Text>Login</Text>
                 </Button>
-                <Button style={styles.shadow} onPress={()=>{}}>
+                <Button onPress={()=>{}}>
                     <Text>Signup</Text>
                 </Button>
                 <Button onPress={()=>{}}>
                     <Text>Terms of Service</Text>
                 </Button>
-            </View>
-      </View>
+            </Block>
+      </Block>
     );
   }
 }
 
 const styles = StyleSheet.create({
-    container :{
-        flex: 1,      
-    },
-    header:{
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    title:{
-        fontSize: theme.sizes.h1,
-        alignItems: 'center',
-        fontWeight:'bold',        
-        color: theme.colors.black        
-    },
-    subtitle: {
-        color: theme.colors.primary
-    },
-    paragraph:{
-        fontSize: theme.sizes.h3,
-        color: theme.colors.gray2,
-        marginTop: theme.sizes.padding / 2
-    },
-    buttons:{
-        flex: 0.5,
-        marginTop: 0,
-        marginRight: theme.sizes.padding * 2,
-        justifyContent: 'center',
-    },
-    illustration:{
-        
-    },
-    step: {
-               
-    },
-    gradient:{
-
-    },
-    shadow:{
-        
-    }
+    
 });
