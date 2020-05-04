@@ -21,8 +21,9 @@ export const logIn = ({ email, password }) => (dispatch, getState) => {
         })
         .then((response) => response.json())
         .then((responseJson) => {
-            if (responseJson.success) {                                
-                AsyncStorage.setItem('token', responseJson.success.token)
+            console.log(responseJson)
+            if (responseJson.token) {                                
+                AsyncStorage.setItem('token', responseJson.token)
                         .then(() => dispatch({type: LOAD_DATA}))
                         .catch(error => console.debug(error))
                         .finally(()=> dispatch({ type: LOGIN }));

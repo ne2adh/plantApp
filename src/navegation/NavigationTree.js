@@ -3,8 +3,10 @@ import { Image } from "react-native";
 import {
     createStackNavigator
 } from '@react-navigation/stack';
-import { theme } from '../constants';
+import { theme }  from '../constants';
 import LoginScreen from '../screens/LoginScreen';
+import MainScreen from '../screens/MainScreen';
+import WelcomeScreen from '../screens/WelcomeScreen';
 
 
 const Stack = createStackNavigator();
@@ -15,7 +17,7 @@ const screenOptions = {
         borderBottomColor: "transparent",
         elevation: 0 // for android
     },
-    headerBackImage: <Image source={require("../assets/icons/back.png")} />,
+    headerBackImage: <Image source={require("../assets/icons/back.png")}/>,
     headerBackTitle: null,
     headerLeftContainerStyle: {
         alignItems: "center",
@@ -33,12 +35,17 @@ const screenOptions = {
 const AppStack = (isLoggedIn) => {
     return (
         <Stack.Navigator screenOptions={screenOptions}>
-            {isLoggedIn ?
+            {
+                isLoggedIn ?
                 (
                     <Stack.Screen name="MainScreen" component={MainScreen} />
                 ) : (
-                    <Stack.Screen name="LoginScreen" component={LoginScreen} />
-                )}
+                    <>
+                        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{ headerShown: false }} />
+                        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+                    </>
+                )
+            }
         </Stack.Navigator>
     );
 }

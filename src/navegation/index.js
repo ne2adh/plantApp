@@ -48,7 +48,7 @@ class AppNavegation extends Component {
 
 
 
-const renderLoader = () => <ActivityIndicator size="large" />
+const renderLoader = () => <ActivityIndicator size="large" style={{flex: 1, alignItems:'center',justifyContent:'center'}} />
 
 const mapStateToProps = (state) => ({
 	appState: state.appState

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 //import PropTypes from 'prop-types';
 import {
-	View,
+    View,
+    Text,
 } from 'react-native';
 import { theme } from '../constants';
 import { connect } from 'react-redux';
@@ -11,7 +12,10 @@ class MainScreen extends Component {
       render() {        
         return (
 			<View style={theme.container}>
-				{content}
+				<Text>
+
+                APP
+                </Text>
 			</View>
 		);
       }

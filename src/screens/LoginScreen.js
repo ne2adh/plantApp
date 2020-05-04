@@ -76,7 +76,7 @@ class LoginScreen extends Component {
                         secureTextEntry={hidePassword}
                         onPress={() => this.setHidePassword(!hidePassword)}
                     />
-                    <TouchableOpacity activeOpacity={opacity || 0.8}>
+                    <TouchableOpacity activeOpacity={0.8}>
                         <Text onPress={() => this._login()}>Login</Text>
                     </TouchableOpacity>
                 </View>
