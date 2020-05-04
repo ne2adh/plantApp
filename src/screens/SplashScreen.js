@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import {
     Image,
     StyleSheet,
+    Dimensions,
     StatusBar,
 } from 'react-native';
 import { Block } from "../components";
+const { width, height } = Dimensions.get("window");
 
 export default class SplashScreen extends Component {  
     constructor(props) {
@@ -14,9 +16,9 @@ export default class SplashScreen extends Component {
       }  
     render(){
         return(
-            <Block center middle>
-               <StatusBar translucent backgroundColor='rgba(0,0,0,0.3)' />
-               <Image source={require("../assets/splash.png")} style={{height: 300, width: 300}} resizeMode="cover"/>
+            <Block center middle color='white'>
+               <StatusBar translucent backgroundColor='white' />
+               <Image source={require("../assets/splash.png")} style={{width, height }} resizeMode="contain"/>
             </Block>
         )
     }
