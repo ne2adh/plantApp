@@ -7,7 +7,7 @@ import { theme }  from '../constants';
 import LoginScreen from '../screens/LoginScreen';
 import MainScreen from '../screens/MainScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
-
+import { Block } from "../components";
 
 const Stack = createStackNavigator();
 const screenOptions = {
