@@ -3,7 +3,6 @@ import {
     View, 
     StatusBar,
 } from 'react-native';
-import * as Animatable from 'react-native-animatable';
 import {theme} from '../constants';
 
 export default class SplashScreen extends Component {    
@@ -11,7 +10,7 @@ export default class SplashScreen extends Component {
         return(
             <View style={theme.container}>
                <StatusBar translucent backgroundColor='rgba(0,0,0,0.3)' />
-               <Animatable.Image 
+               <Image 
                     animation="pulse"
                     easing="ease-out"
                     iterationCount="infinite"
