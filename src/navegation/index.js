@@ -20,7 +20,7 @@ class AppNavegation extends Component {
 		return new Promise((resolve) =>
 			setTimeout(
 				() => { resolve('result') },
-				5000
+				2000
 			)
 		);
 	}

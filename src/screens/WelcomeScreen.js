@@ -215,7 +215,7 @@ class WelcomeScreen extends Component {
   render() {
 	const { navigation } = this.props;
     return (
-    	<Block style={{backgroundColor: 'white'}}>
+    	<Block style={{backgroundColor: theme.colors.white}}>
 			<StatusBar backgroundColor='white' />
             <Block center middle  flex={0.3}>
                 <Text h1 center bold>
@@ -232,7 +232,7 @@ class WelcomeScreen extends Component {
                 <Button gradient onPress={()=>navigation.navigate('LoginScreen')}>
                     <Text center semibold white>Login</Text>
                 </Button>
-                <Button shadow onPress={()=>navigation.navigate('Signup')}>
+                <Button shadow onPress={()=>navigation.navigate('SignUpScreen')}>
                     <Text center semibold>Signup</Text>
                 </Button>
                 <Button onPress={()=>this.setState({showTerms: true})}>
@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
 		marginTop: theme.sizes.padding / 2
 	},
 	stepsContainer: {
-		position: "absolute",
+		position: 'absolute',
 		bottom: theme.sizes.base * 3,
 		right: 0,
 		left: 0

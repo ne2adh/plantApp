@@ -4,6 +4,8 @@ import {
     createStackNavigator
 } from '@react-navigation/stack';
 import { theme }  from '../constants';
+import BrowseScreen from '../screens/BrowseScreen';
+import SignUpScreen from '../screens/SignUpScreen';
 import ForgotScreen from '../screens/ForgotScreen';
 import LoginScreen from '../screens/LoginScreen';
 import MainScreen from '../screens/MainScreen';
@@ -38,12 +40,13 @@ const AppStack = (isLoggedIn) => {
             {
                 isLoggedIn ?
                 (
-                    <Stack.Screen name="MainScreen" component={MainScreen} />
+                    <Stack.Screen name="BrowseScreen" component={BrowseScreen} />
                 ) : (
                     <>
                         <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{ headerShown: false }} />
                         <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ title: null }} />
                         <Stack.Screen name="ForgotScreen" component={ForgotScreen} options={{ title: null }} />
+                        <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={{ title: null }} />
                     </>
                 )
             }
