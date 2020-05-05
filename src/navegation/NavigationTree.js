@@ -4,10 +4,10 @@ import {
     createStackNavigator
 } from '@react-navigation/stack';
 import { theme }  from '../constants';
+import ForgotScreen from '../screens/ForgotScreen';
 import LoginScreen from '../screens/LoginScreen';
 import MainScreen from '../screens/MainScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
-import { Block } from "../components";
 
 const Stack = createStackNavigator();
 const screenOptions = {
@@ -43,6 +43,7 @@ const AppStack = (isLoggedIn) => {
                     <>
                         <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{ headerShown: false }} />
                         <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ title: null }} />
+                        <Stack.Screen name="ForgotScreen" component={ForgotScreen} options={{ title: null }} />
                     </>
                 )
             }
