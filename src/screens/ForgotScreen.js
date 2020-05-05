@@ -115,7 +115,6 @@ const styles = StyleSheet.create({
     forgot: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: theme.colors.white
       },
       input: {
         borderRadius: 0,

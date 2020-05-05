@@ -120,8 +120,7 @@ const styles = StyleSheet.create({
 	login: {
 		flex: 1,
 		justifyContent: 'center',
-		flexDirection: 'column',
-		backgroundColor: theme.colors.white
+		flexDirection: 'column',		
 	},
 	input: {
 		borderRadius: 0,

@@ -40,7 +40,7 @@ const AppStack = (isLoggedIn) => {
             {
                 isLoggedIn ?
                 (
-                    <Stack.Screen name="BrowseScreen" component={BrowseScreen} />
+                    <Stack.Screen name="BrowseScreen" component={BrowseScreen} options={{ title: null }} />
                 ) : (
                     <>
                         <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{ headerShown: false }} />

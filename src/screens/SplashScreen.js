@@ -19,7 +19,7 @@ export default class SplashScreen extends Component {
       }  
     render(){
         return(
-            <Block center middle color='white'>
+            <Block center middle>
                <StatusBar translucent backgroundColor='white' />
                <Image source={require("../assets/splash.png")} style={{width, height }} resizeMode="contain"/>
             </Block>

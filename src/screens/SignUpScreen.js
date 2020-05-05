@@ -123,8 +123,7 @@ const styles = StyleSheet.create({
     signup: {
         flex: 1, 
         flexDirection: 'column', 
-        justifyContent: 'center',
-        backgroundColor: theme.colors.white
+        justifyContent: 'center',        
     },
     input: {
         borderRadius: 0,

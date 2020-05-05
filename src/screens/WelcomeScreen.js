@@ -215,7 +215,7 @@ class WelcomeScreen extends Component {
   render() {
 	const { navigation } = this.props;
     return (
-    	<Block style={{backgroundColor: theme.colors.white}}>
+    	<Block>
 			<StatusBar backgroundColor='white' />
             <Block center middle  flex={0.3}>
                 <Text h1 center bold>
