@@ -3,7 +3,7 @@ import { Switch, Platform } from "react-native";
 
 import { theme } from "../constants";
 
-const GRAY_COLOR = "rgba(168, 182, 200, 0.30)";
+const GRAY_COLOR = "rgba(168, 182, 200, 0.70)";
 
 export default class SwitchInput extends React.PureComponent {
   render() {
@@ -20,7 +20,7 @@ export default class SwitchInput extends React.PureComponent {
         thumbColor={thumbColor}
         ios_backgroundColor={GRAY_COLOR}
         trackColor={{
-          // false: GRAY_COLOR,
+          //false: GRAY_COLOR,
           true: theme.colors.secondary
         }}
         value={value}

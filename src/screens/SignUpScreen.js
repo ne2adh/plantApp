@@ -12,13 +12,17 @@ import { Button, Block, Input, Text } from "../components";
 import { theme } from "../constants";
 
 export default class SignUpScreen extends Component {
-    state = {
-        email: 'gianmet@hotmail.com',
-        username: 'giancarlo  delgadillo',
-        password: '123456',
-        errors: [],
-        loading: false
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: 'gianmet@hotmail.com',
+            username: 'giancarlo  delgadillo',
+            password: '123456',
+            errors: [],
+            loading: false
+        };
+        
+    }  
 
     handleSignUp() {
         const { navigation } = this.props;

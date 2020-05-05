@@ -15,7 +15,7 @@ export default class SplashScreen extends Component {
         super(props);
         this.state = {
         };
-        AsyncStorage.removeItem('token')
+        //AsyncStorage.removeItem('token')
       }  
     render(){
         return(

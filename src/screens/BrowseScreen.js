@@ -13,10 +13,14 @@ import { theme, mocks } from "../constants";
 const { width } = Dimensions.get("window");
 
 class BrowseScreen extends Component {
-  state = {
-    active: "Products",
-    categories: []
-  };
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: "Products",
+      categories: []
+    };    
+  }  
 
   componentDidMount() {
     this.setState({ categories: this.props.categories });
@@ -59,7 +63,7 @@ class BrowseScreen extends Component {
           <Text h1 bold>
             Browse
           </Text>
-          <Button onPress={() => navigation.navigate("Settings")}>
+          <Button onPress={() => navigation.navigate("SettingsScreen")}>
             <Image source={profile.avatar} style={styles.avatar} />
           </Button>
         </Block>
@@ -77,7 +81,7 @@ class BrowseScreen extends Component {
                 categories.map(category => (
                     <TouchableOpacity
                         key={category.name}
-                        onPress={() => navigation.navigate("Explore", { category })}
+                        onPress={() => navigation.navigate("ExploreScreen", { category })}
                     >
                         <Card center middle shadow style={styles.category}>
                         <Badge
