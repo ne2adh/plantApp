@@ -6,6 +6,8 @@ import {
     StatusBar,
 } from 'react-native';
 import { Block } from "../components";
+import AsyncStorage from "@react-native-community/async-storage";
+
 const { width, height } = Dimensions.get("window");
 
 export default class SplashScreen extends Component {  
@@ -13,6 +15,7 @@ export default class SplashScreen extends Component {
         super(props);
         this.state = {
         };
+        AsyncStorage.removeItem('token')
       }  
     render(){
         return(

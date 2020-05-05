@@ -16,7 +16,7 @@ export const logIn = ({ email, password }) => (dispatch, getState) => {
             },
             body: qs.stringify({
                 email: 'eve.holt@reqres.in',
-                password: 'cityslicka',
+                password: '',
             })
         })
         .then((response) => response.json())

@@ -12,7 +12,7 @@ import { Block } from "../components";
 const Stack = createStackNavigator();
 const screenOptions = {
     headerStyle: {
-        height: theme.sizes.base * 4,
+        height: theme.sizes.base * 3,
         backgroundColor: theme.colors.white, // or 'white
         borderBottomColor: "transparent",
         elevation: 0 // for android

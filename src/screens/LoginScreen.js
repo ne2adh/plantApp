@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import {
     Alert,
     StyleSheet,
-    TextInput,
-    TouchableOpacity,
+    Keyboard,
+    View,
+    Platform,
+    ActivityIndicator,
     KeyboardAvoidingView
 } from 'react-native';
 
@@ -20,88 +22,104 @@ class LoginScreen extends Component {
         super(props);
 
         this.state = {
-            email: '',
-            password: '',
-            hidePassword: true,
-            loader: false,
+            email: 'eve.holt@reqres.in',
+            password: 'cityslicka',
+            loading: false,
             errors: [],
+            showTheThing:true
         }
-        this._login = this._login.bind(this);// you should bind this to the method that call the props        
+    }
+    componentDidMount () {
+        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow);
+        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide);
+      }
+    componentWillUnmount(){
+        this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();
     }
 
-
-    setHidePassword = arg => {
-        this.setState({ hidePassword: arg })
-    }
-    
-    handlePasswordChange = password => {
-        this.setState({ password })
-    }
-
-    _login() {
-        this.setState({ loader: true });
+    handleLogin() {        
+        const errors = [];
+        Keyboard.dismiss();
+        this.setState({ loading: true });
         this.props.logIn(this.state).then(($result) => {
-            this.setState({ loader: false });
+            this.setState({ errors, loading: false });
             console.log('iniciaste session correctamente');
         }).catch((err) => {
-            this.setState({ loader: false });
+            errors.push('email');
+            errors.push('password');
+            this.setState({ errors, loading: false });
             Alert.alert('Error', err.message);
         })
     }
 
+    _keyboardDidShow = () => {
+        this.setState({showTheThing:false});
+      }
+    
+      _keyboardDidHide = () => {
+        this.setState({showTheThing:true});
+      }
+    
+
     render() {
-        const { hidePassword, email, password, loading, errors } = this.state;
+        const { email, password, loading, errors } = this.state;
         const { navigation } = this.props;
         const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
-
+        const keyboardVerticalOffset = Platform.OS === 'ios' ? 80 : 0
         return (
-            <KeyboardAvoidingView style={styles.login} behavior="padding">
-                <Block padding={[0, theme.sizes.base * 2]}>
-                    <Text h1 bold>Login</Text>
-                    <Block middle>
-                        <Input
-                            label="Email"
-                            error={hasErrors("email")}
-                            style={[styles.input, hasErrors("email")]}
-                            defaultValue={email}
-                            autoCapitalize='none'
-                            keyboardType='email-address'
-                            onChangeText={text => this.setState({ email: text })}
-                        />
-                        <Input
-                            secure
-                            label="Password"
-                            error={hasErrors("password")}
-                            style={[styles.input, hasErrors("password")]}
-                            defaultValue={this.state.password}
-                            onChangeText={text => this.setState({ password: text })}
-                        />
-                        <TextInput
-                            name='password'
-                            value={password}
-                            placeholder='Contrasena'
-                            autoCapitalize='none'
-                            onChangeText={this.handlePasswordChange}
-                            keyboardType={null}
-                            secureTextEntry={hidePassword}
-                            onPress={() => this.setHidePassword(!hidePassword)}
-                        />
-                        <TouchableOpacity activeOpacity={0.8}>
-                            <Text onPress={() => this._login()}>Login</Text>
-                        </TouchableOpacity>
-                        <Button onPress={() => navigation.navigate("Forgot")}>
-                            <Text
-                                gray
-                                caption
-                                center
-                                style={{ textDecorationLine: "underline" }}
-                            >
-                                Forgot your password?
-                            </Text>
-                        </Button>
-                    </Block>
+            <KeyboardAvoidingView 
+                style={styles.login} 
+                behavior={Platform.OS === 'ios' ? "padding" : null}
+                enabled 
+                keyboardVerticalOffset={keyboardVerticalOffset}
+            >
+            <Block padding={[0, theme.sizes.base * 2.8]}>
+            { 
+               this.state.showTheThing && 
+               <Text h1 bold>Login</Text>
+            }
+                
+
+            <Block middle>
+                <Input
+                  label="Email"
+                  error={hasErrors("email")}
+                  style={[styles.input, hasErrors("email")]}
+                  defaultValue={this.state.email}
+                  onChangeText={text => this.setState({ email: text })}
+                />
+                <Input
+                  secure
+                  label="Password"
+                  error={hasErrors("password")}
+                  style={[styles.input, hasErrors("password")]}
+                  defaultValue={this.state.password}
+                  onChangeText={text => this.setState({ password: text })}
+                />
+                <Button gradient onPress={() => this.handleLogin()}>
+                  {loading ? (
+                    <ActivityIndicator size="small" color="white" />
+                  ) : (
+                    <Text bold white center>
+                      Login
+                    </Text>
+                  )}
+                </Button>
+    
+                <Button onPress={() => navigation.navigate("Forgot")}>
+                  <Text
+                    gray
+                    caption
+                    center
+                    style={{ textDecorationLine: "underline" }}
+                  >
+                    Forgot your password?
+                  </Text>
+                </Button>
                 </Block>
-            </KeyboardAvoidingView>
+              </Block>
+          </KeyboardAvoidingView>
         )
     }
 }
@@ -133,6 +151,6 @@ const styles = StyleSheet.create({
     },
     hasErrors: {
       borderBottomColor: theme.colors.accent
-    }
+    },    
   });
   
